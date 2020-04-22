@@ -3,6 +3,6 @@ package com.naat.nix.order.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class OrdersController {
+public class TakeoutController {
 
 }
