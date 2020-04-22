@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Componentes comunes</title>
+</head>
+
+<body>
+  <!-- Barra de navegación -->
+  <b-navbar th:fragment="nav-bar">
+    <b-navbar-brand href="#">Na'at</b-navbar-brand>
+
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+    <b-collapse is-nav id="nav-collapse">
+
+      <!-- Ajustado a la derecha -->
+      <b-navbar-nav>
+        <b-nav-form>
+          <b-form-input placeholer="Buscar"></b-form-input>
+          <b-button type="submit">Buscar</b-button>
+        </b-nav-form>
+      </b-navbar-nav>
+
+      <!-- Ajustado a la izquierda -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item href="#">Pedidos</b-nav-item>
+        <b-nav-item href="#">Carrito</b-nav-item>
+
+        <b-nav-item-dropdown text="Usuario">
+          <b-dropdown-item href="#">Peril</b-dropdown-item>
+          <b-dropdown-item href="#">Salir</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+      
+    </b-collapse>
+
+  </b-navbar>
+
+  <!-- En desarrollo, lista genérica para mostrar elementos -->
+  <b-card-group deck th:fragment="options">
+    <b-card title="Platillo1" style="width: 50%;">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo2">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo3">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo4">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo5">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo3">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+
+    <b-card title="Platillo3">
+      <b-card-text>
+        Comida
+      </b-card-text>
+    </b-card>
+  </b-card-group>
+
+  <b-card no-body th:fragment="menu">
+    <b-tabs card vertical>
+      <b-tab title="Car 2">
+        <div style="overflow-x: scroll;" th:insert="::options"></div>
+      </b-tab>
+      <b-tab title="Cat3">
+        <div style="overflow-x: scroll;" th:insert="::options"></div>
+      </b-tab>
+    </b-tabs>
+  </b-card>
+</body>
+
+</html>
