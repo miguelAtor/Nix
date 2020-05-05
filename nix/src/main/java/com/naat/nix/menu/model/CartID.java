@@ -2,11 +2,11 @@ package com.naat.nix.menu.model;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToOne;
 
-/* Representa la llave primaria compuesta del objeto Cart */
 @Embeddable
 public class CartID implements Serializable {
 
@@ -14,7 +14,7 @@ public class CartID implements Serializable {
     @Column(name="id_carrito")
     int idCarrito;
 
-    @OneToOne(mappedBy="carritoID")
+    @OneToOne(mappedBy="carrito")
     String correo;
 
     public CartID() {

@@ -4,8 +4,13 @@ import java.util.List;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+import com.naat.nix.user.model.Client;
+
 import javax.persistence.JoinColumn;
 
 import lombok.Data;
@@ -13,9 +18,15 @@ import lombok.Data;
 @Data
 @Entity
 public class Cart {
-  
+  /**
   @EmbeddedId
-	private CartID cartId;
+  private CartID cartId;*/
+  
+  @Id
+  private int id;
+
+  @OneToOne(mappedBy="carrito")
+  private Client cliente;
 
   @ManyToMany
   @JoinTable(name="Platillos", 
@@ -34,7 +45,11 @@ public class Cart {
     return this.platillos;
   }
 
-  public CartID getCartId() {
-    return this.cartId;
+  public int getId() {
+    return this.id;
   }
+
+public Client getCliente() {
+	return this.cliente;
+}
 }

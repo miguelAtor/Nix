@@ -24,7 +24,7 @@ public class TakeoutController {
     @Autowired
     private ClientService clientService;
 
-    private CartID carritoID;
+    private Cart carrito;
     private Client cliente;
     private ArrayList<Food> platillos;
     private Takeout orden;
@@ -33,11 +33,11 @@ public class TakeoutController {
     ArrayList<Takeout> ordenes = new ArrayList<Takeout>();
     private DeliveryMan repartidor = new DeliveryMan("r@gmail.com", "Juan", ordenes);
 
-    public ModelAndView confirmaOrden(Cart carrito) {
+    public ModelAndView confirmaOrden(Cart cart) {
         ModelAndView modelAndView = new ModelAndView("OrdenarIH");
         platillos = (ArrayList<Food>) carrito.getPlatillos();
-        carritoID = carrito.getCartId();
-        cliente = clientService.obtenClienteId(carritoID.getCorreo());
+        carrito = cart;
+        cliente = carrito.getCliente();
         precio = calculaPrecio();
         orden = new Takeout();
         orden.setPlatillos(platillos);

@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.naat.nix.menu.model.CartID;
+import com.naat.nix.menu.model.Cart;
 import com.naat.nix.order.model.Takeout;
 
 import lombok.Data;
@@ -27,16 +27,16 @@ public class Client {
   private List<Takeout> ordenes;
 
   @OneToOne
-  @JoinColumn(name="carritoID")
-  private CartID carritoID;
+  @JoinColumn(name="carrito")
+  private Cart carrito;
 
   public Client() {}
 
-  public Client(String correo, String nombre, List<Takeout> ordenes, CartID carritoID) {
+  public Client(String correo, String nombre, List<Takeout> ordenes, Cart carrito) {
     this.correo = correo;
     this.nombre = nombre;
     this.ordenes = ordenes;
-    this.carritoID = carritoID;
+    this.carrito = carrito;
   }
 
 }

@@ -1,5 +1,6 @@
 package com.naat.nix.menu.model;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,7 +30,10 @@ public class Food {
 	private String descripcion;
 
 	@Column(name="nombre")
-	private String nombre;
+  private String nombre;
+  
+  @Column(name="foto")
+  private Blob foto;
 
 	@ManyToOne
 	@JoinColumn(name="categoria") 

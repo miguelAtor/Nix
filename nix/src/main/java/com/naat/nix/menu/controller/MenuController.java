@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -25,18 +26,20 @@ public class MenuController {
     @GetMapping
     public String obtenPlatillos(Model model) {
         platillos = menuService.obtenPlatillos();
+        categorias = menuService.obtenCategorias();
+        model.addAttribute("categorias", categorias);
         model.addAttribute("platillos", platillos);
         return "VerMenuIH";
     }
 
-    @GetMapping
+    /**@GetMapping
     public String obtenCategorias(Model model) {
         categorias = menuService.obtenCategorias();
         model.addAttribute("categorias", categorias);
         return "VerMenuIH";
-    }
+    }*/
     
-    @GetMapping
+    @PostMapping
     public String verCategoria(Model model, @PathVariable("nombre") String nombre) {
         Category categoria = menuService.obtenCategoria(nombre);
         platillos = platillosCategoria(categoria);
