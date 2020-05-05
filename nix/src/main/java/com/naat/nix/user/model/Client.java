@@ -27,7 +27,7 @@ public class Client {
   private List<Takeout> ordenes;
 
   @OneToOne
-  @JoinColumn(name="cart_id")
+  @JoinColumn(name="carritoID")
   private CartID carritoID;
 
   public Client() {}

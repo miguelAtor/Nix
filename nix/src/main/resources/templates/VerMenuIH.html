@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head th:replace="fragments/common::head"></head>
+
+  <body>
+    <header th:insert="fragments/common::navbar"></header>
+
+    <h3 style="padding: 2rem;">Menú</h3>
+
+    <div class="col-lg-3" th:object="${categoria}">
+        <select class="form-control" id="nombre" name="nombre">
+            <option value="">Categorías</option>
+            <option th:each="categoria : ${categorias}"
+                    th:value="${categoria.name}"
+                    th:text="${categoria.name}"></option>
+        </select>
+    </div>
+
+    <div class="row flex-nowrap" style="overflow: scroll;">
+        <tr th:each="platillo : ${platillos}">
+            <div th:replace="fragments/common::end_foodcard"></div>
+        </tr>
+    </div>
+
+  </body>
+</html>

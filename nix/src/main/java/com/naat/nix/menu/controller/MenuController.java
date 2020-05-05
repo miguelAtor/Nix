@@ -1,6 +1,5 @@
 package com.naat.nix.menu.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
 import com.naat.nix.menu.model.Category;
@@ -8,11 +7,13 @@ import com.naat.nix.menu.model.Food;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "/VerMenuIH")
 public class MenuController {
 
     @Autowired
@@ -21,23 +22,26 @@ public class MenuController {
     ArrayList<Category> categorias;
     ArrayList<Food> platillos;
 
-    public ModelAndView verMenu() {
-		ModelAndView modelAndView = new ModelAndView("VerMenuIH");
-		categorias = menuService.obtenCategorias();
-		platillos = menuService.obtenPlatillos();
-        modelAndView.addObject("menu", platillos);
-        modelAndView.addObject("categorias", categorias);
-		return modelAndView;
+    @GetMapping
+    public String obtenPlatillos(Model model) {
+        platillos = menuService.obtenPlatillos();
+        model.addAttribute("platillos", platillos);
+        return "VerMenuIH";
+    }
+
+    @GetMapping
+    public String obtenCategorias(Model model) {
+        categorias = menuService.obtenCategorias();
+        model.addAttribute("categorias", categorias);
+        return "VerMenuIH";
     }
     
-    @RequestMapping( value = "/ver/{nombre}")
-    public ModelAndView verCategoria(@PathVariable("nombre") String nombre) {
-        ModelAndView modelAndView = new ModelAndView("VerMenuIH");
+    @GetMapping
+    public String verCategoria(Model model, @PathVariable("nombre") String nombre) {
         Category categoria = menuService.obtenCategoria(nombre);
         platillos = platillosCategoria(categoria);
-        modelAndView.addObject("menu", platillos);
-        modelAndView.addObject("categorias", categorias);
-		return modelAndView;        
+        model.addAttribute("platillos", platillos);
+		return "redirect:/VerMenuIH";        
     }
 
     private ArrayList<Food> platillosCategoria(Category categoria) {
